@@ -1,0 +1,47 @@
+body {
+    font-family: 'Georgia', serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333;
+}
+
+header {
+    padding: 50px 20px;
+    background: white;
+}
+
+h1 {
+    font-size: 4em;
+    font-weight: bold;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: normal;
+    color: #555;
+}
+
+.social-icons {
+    margin: 20px;
+}
+
+.social-icons img {
+    width: 40px;
+    margin: 0 10px;
+}
+
+.about-section {
+    display: flex;
+    justify-content: center;
+    max-width: 900px;
+    margin: auto;
+    text-align: left;
+}
+
+.about-section p {
+    flex: 1;
+    padding: 10px;
+}
