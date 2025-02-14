@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+</head>
+<body>
+    <header>
+        <h1>{{ site.name }}</h1>
+        <h2>{{ site.subtitle }}</h2>
+        <div class="social-icons">
+            <a href="{{ site.twitter }}"><img src="/assets/icons/twitter.svg" alt="Twitter"></a>
+            <a href="{{ site.linkedin }}"><img src="/assets/icons/linkedin.svg" alt="LinkedIn"></a>
+            <a href="{{ site.github }}"><img src="/assets/icons/github.svg" alt="GitHub"></a>
+            <a href="{{ site.medium }}"><img src="/assets/icons/medium.svg" alt="Medium"></a>
+        </div>
+    </header>
+    <main>
+        {{ content }}
+    </main>
+</body>
+</html>
