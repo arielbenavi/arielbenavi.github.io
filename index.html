@@ -34,14 +34,14 @@
   @keyframes grain { 0% { transform: translate(0,0); } 20% { transform: translate(-6%,4%); } 40% { transform: translate(4%,-6%); } 60% { transform: translate(-4%,-2%); } 80% { transform: translate(6%,6%); } 100% { transform: translate(0,0); } }
   .nav, .nav-blur { position: fixed; top: 0; left: 0; right: 0; z-index: 2; }
   .nav-blur { height: var(--header-h); pointer-events: none; background-image: linear-gradient(black 25%, transparent); z-index: 1; }
-  .nav { display: flex; gap: 16px; padding: 16px; font-family: var(--serif); font-size: 16px; line-height: 24px; filter: blur(.25px); }
+  .nav { display: flex; gap: 16px; padding: 16px; font-family: var(--serif); font-size: 16px; line-height: 24px; }
   .nav a { color: var(--fg); text-decoration: none; text-underline-offset: 3px; }
   .nav a[data-active="true"], .nav a:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; }
-  .counter { position: fixed; top: 16px; right: 16px; z-index: 2; font-family: var(--serif); font-size: 16px; line-height: 24px; color: var(--fg); filter: blur(.25px); user-select: none; display: none; animation: show .6s ease .8s both; }
+  .counter { position: fixed; top: 16px; right: 16px; z-index: 2; font-family: var(--serif); font-size: 16px; line-height: 24px; color: var(--fg); user-select: none; display: none; animation: show .6s ease .8s both; }
   @media (hover: hover) { .counter { display: block; } }
 
   main { max-width: 1168px; margin: 0 auto; padding: 180px 16px 0; }
-  .home-text { font-size: 35px; line-height: 42px; letter-spacing: -0.01em; font-weight: 400; filter: blur(.25px); animation: show .6s ease both; animation-delay: calc(.16s * var(--delay, 0)); }
+  .home-text { font-size: 35px; line-height: 42px; letter-spacing: -0.01em; font-weight: 400; animation: show .6s ease both; animation-delay: calc(.16s * var(--delay, 0)); }
   .flow { margin: 0; }
   @keyframes show { from { opacity: 0; } to { opacity: 1; } }
 
@@ -56,10 +56,11 @@
   .reveal-trigger[data-highlighted="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
   .reveal-trigger[data-highlighted="true"] + .reveal-content[data-state="open"] { color: var(--accent); }
   .reveal-content { transition: color .3s; }
-  .reveal-content[data-state="closed"] { filter: blur(6px); opacity: .8; pointer-events: none; user-select: none; color: white; }
-  .reveal-content[data-state="open"] { animation: reveal .6s ease both; }
-  @keyframes reveal { from { filter: blur(.1em); } to { filter: blur(0); } }
-  .home-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; letter-spacing: -.0075em; }
+  .reveal-content { transition: color .6s ease, text-shadow .6s ease; }
+  .reveal-content[data-state="closed"], .reveal-content[data-state="closed"] * { color: transparent !important; text-shadow: 0 0 .5em rgba(255,255,255,.7); pointer-events: none; user-select: none; }
+  .reveal-content[data-state="closed"] .reveal-trigger { border-color: transparent; background: none; box-shadow: 0 0 .3em rgba(255,255,255,.35); }
+  .reveal-content[data-state="closed"] .home-link { text-decoration-color: transparent; }
+    .home-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; letter-spacing: -.0075em; }
   .home-link:hover { color: var(--accent); }
 
 
@@ -203,7 +204,7 @@ main.addEventListener("click", (e) => {
   if (!open) content.querySelectorAll("[data-state]").forEach((el) => (el.dataset.state = "closed"));
   // the most recently opened pill gets the accent, like the original
   triggers.forEach((x) => x.removeAttribute("data-highlighted"));
-  if (open) { t.dataset.highlighted = "true"; setTimeout(() => t.removeAttribute("data-highlighted"), 1200); }
+  if (open) t.dataset.highlighted = "true";
   syncCount();
 });
 </script>
