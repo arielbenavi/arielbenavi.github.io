@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ariel Ben Avi</title>
+<meta name="description" content="Ariel Ben Avi: CS and math at Columbia, quant developer, former 8200 and ActiveFence engineer, music producer.">
+<meta property="og:title" content="Ariel Ben Avi">
+<meta property="og:description" content="CS and math at Columbia. Quant developer, former 8200 and ActiveFence engineer, music producer.">
+<meta property="og:url" content="https://arielbenavi.com/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#111111">
+<link rel="canonical" href="https://arielbenavi.com/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='16' fill='%23111'/><text x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-style='italic' fill='%23eee'>a</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&family=Instrument+Serif&display=swap" rel="stylesheet">
+<style>
+  /* Recreation of ped.ro's layout with Ariel's content. Neue Montreal -> Inter Tight, Editorial New -> Instrument Serif. */
+  :root {
+    --bg: #111111; --fg: #eeeeee; --fg-hi: #eeeef0; --ink: #111113; --accent: #ff5b38; --accent-ink: #fff7f6;
+    --sans: "Inter Tight", "Helvetica Neue", Arial, sans-serif; --serif: "Instrument Serif", Georgia, serif;
+    --header-h: 100px;
+  }
+  * { box-sizing: border-box; }
+  html { background: #000; }
+  body { margin: 0; background: var(--bg); color: #fff; font: 16px/24px var(--sans); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+
+  /* film grain over everything, like the original */
+  body::after { content: ""; position: fixed; inset: -50%; z-index: 3; pointer-events: none; opacity: .07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 1s steps(6) infinite; }
+  @keyframes grain { 0% { transform: translate(0,0); } 20% { transform: translate(-6%,4%); } 40% { transform: translate(4%,-6%); } 60% { transform: translate(-4%,-2%); } 80% { transform: translate(6%,6%); } 100% { transform: translate(0,0); } }
+  .nav, .nav-blur { position: fixed; top: 0; left: 0; right: 0; z-index: 2; }
+  .nav-blur { height: var(--header-h); pointer-events: none; background-image: linear-gradient(black 25%, transparent); z-index: 1; }
+  .nav { display: flex; gap: 16px; padding: 16px; font-family: var(--serif); font-size: 16px; line-height: 24px; filter: blur(.25px); }
+  .nav a { color: var(--fg); text-decoration: none; text-underline-offset: 3px; }
+  .nav a[data-active="true"], .nav a:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; }
+  .counter { position: fixed; top: 16px; right: 16px; z-index: 2; font-family: var(--serif); font-size: 16px; line-height: 24px; color: var(--fg); filter: blur(.25px); user-select: none; display: none; animation: show .6s ease .8s both; }
+  @media (hover: hover) { .counter { display: block; } }
+
+  main { max-width: 1168px; margin: 0 auto; padding: 180px 16px 160px; }
+  .home-text { font-size: 35px; line-height: 42px; letter-spacing: -0.01em; font-weight: 400; filter: blur(.25px); animation: show .6s ease both; animation-delay: calc(.16s * var(--delay, 0)); }
+  .flow { margin: 0; }
+  @keyframes show { from { opacity: 0; } to { opacity: 1; } }
+
+  .reveal-trigger { background: none; color: inherit; outline: none; font-family: inherit; display: inline-block; position: relative; border: 1px solid; border-radius: 9999px;
+    padding: 0 .4em; line-height: 1; font-size: .85em; cursor: help; -webkit-tap-highlight-color: transparent; vertical-align: .08em; }
+  .reveal-trigger[data-state="open"] { background: var(--fg-hi); color: var(--ink); border-color: var(--fg-hi); }
+  .reveal-trigger:focus-visible { box-shadow: 0 0 0 1px black, 0 0 0 3px var(--accent); }
+  @media (hover: hover) {
+    .reveal-trigger:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+    .reveal-trigger[data-state="open"]:hover + .reveal-content[data-state="open"] { color: var(--accent); }
+  }
+  .reveal-trigger[data-highlighted="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .reveal-trigger[data-highlighted="true"] + .reveal-content[data-state="open"] { color: var(--accent); }
+  .reveal-content { transition: color .3s; }
+  .reveal-content[data-state="closed"] { filter: blur(6px); opacity: .8; pointer-events: none; user-select: none; color: white; }
+  .reveal-content[data-state="open"] { animation: reveal .6s ease both; }
+  @keyframes reveal { from { filter: blur(.1em); } to { filter: blur(0); } }
+  .home-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .12em; letter-spacing: -.0075em; }
+  .home-link:hover { color: var(--accent); }
+
+  @media (max-width: 767px) {
+    main { padding-top: 168px; }
+    .home-text { font-size: 28px; line-height: 36px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body>
+  <div class="nav-blur"></div>
+  <nav class="nav">
+    <a data-active="true" href="./">Home</a>
+    <a data-active="false" href="https://github.com/arielbenavi" target="_blank" rel="noopener">GitHub</a>
+    <a data-active="false" href="https://www.linkedin.com/in/arielbenavi" target="_blank" rel="noopener">LinkedIn</a>
+    <a data-active="false" href="mailto:ab5884@columbia.edu">Email</a>
+  </nav>
+  <span class="counter" id="counter">R0/0</span>
+  <main id="main"></main>
+
+<script>
+// [WORD|hidden text] is a pill that reveals the text after it; they can nest.
+// {label|url} is an underlined link.
+const SPOTIFY = "https://open.spotify.com/playlist/6oiJuW6JoN2jYlJHoO8GI1";
+const COPY = [
+  "Hi! I'm [Ariel| Ben Avi. I did cybersecurity at [8200|, the Israeli intelligence unit.] Then I did SWE at [ActiveFence|, an AI content moderation startup.]]",
+  "Right now I'm at [Columbia|, studying computer science and math.]",
+  "This summer I was a quant developer at [Millennium| on the Fixed Income and Commodities team.]",
+  "On the side I build [things| like music plugins, {hindsight|https://github.com/arielbenavi/hindsight}, an app that makes your saved posts useful, and {more|https://github.com/arielbenavi}.]",
+  `I also make [music|. {Hear something I produced!|${SPOTIFY}}]`,
+  "I'm in [New York|, looking for new opportunities. Say hi at [email| {ab5884@columbia.edu|mailto:ab5884@columbia.edu}, or find me on {GitHub|https://github.com/arielbenavi} and {LinkedIn|https://www.linkedin.com/in/arielbenavi}.]]",
+];
+
+// tiny recursive parser for the markup above
+function parse(s, i = 0, stopAt = "") {
+  let html = "", buf = "";
+  const flush = () => { if (buf) { html += buf; buf = ""; } };
+  while (i < s.length) {
+    const c = s[i];
+    if (c === stopAt) { flush(); return [html, i + 1]; }
+    if (c === "[") {
+      flush();
+      const bar = s.indexOf("|", i);
+      const word = s.slice(i + 1, bar);
+      const [inner, next] = parse(s, bar + 1, "]");
+      html += `<button type="button" class="reveal-trigger" data-state="closed" data-word="${word.toLowerCase()}">${word}</button><span class="reveal-content" data-state="closed">${inner}</span>`;
+      i = next; continue;
+    }
+    if (c === "{") {
+      flush();
+      const end = s.indexOf("}", i), [label, url] = s.slice(i + 1, end).split("|");
+      html += `<a class="home-link" href="${url}"${url.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${label}</a>`;
+      i = end + 1; continue;
+    }
+    buf += c; i++;
+  }
+  flush(); return [html, i];
+}
+const main = document.getElementById("main");
+// one continuous block of text, like the original: each lead-in fades in after the last
+main.innerHTML = `<p class="flow">` + COPY.map((p, n) => `<span class="home-text" style="--delay:${n}">${parse(p)[0]}</span> `).join("") + `</p>`;
+
+const triggers = [...document.querySelectorAll(".reveal-trigger")];
+const counter = document.getElementById("counter");
+const syncCount = () => counter.textContent = `R${triggers.filter((t) => t.dataset.state === "open").length}/${triggers.length}`;
+syncCount();
+
+main.addEventListener("click", (e) => {
+  const t = e.target.closest(".reveal-trigger"); if (!t) return;
+  const content = t.nextElementSibling, open = t.dataset.state !== "open";
+  t.dataset.state = content.dataset.state = open ? "open" : "closed";
+  // closing a pill closes everything nested inside it
+  if (!open) content.querySelectorAll("[data-state]").forEach((el) => (el.dataset.state = "closed"));
+  // the most recently opened pill gets the accent, like the original
+  triggers.forEach((x) => x.removeAttribute("data-highlighted"));
+  if (open) { t.dataset.highlighted = "true"; setTimeout(() => t.removeAttribute("data-highlighted"), 1200); }
+  syncCount();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+.claude/
+# local design prototypes, not part of the live site
+proto/
+styles/
