@@ -69,6 +69,11 @@
     max-width: 1168px; margin: 0 auto; padding: 120px 16px 140px; font: 16px/1.6 "Inter Tight", "Helvetica Neue", Arial, sans-serif; color: var(--text); }
   .projects .inner { max-width: 680px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
   .projects .label { background: #000; color: #fff; border: 1px solid #333; border-radius: 3px; padding: 3px 8px; font-size: 13px; font-weight: 500; line-height: 1.4; letter-spacing: .01em; display: inline-block; margin: 0; }
+  .projects .tabs { display: flex; gap: 8px; }
+  .projects .tab { font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: color .2s, background .2s, border-color .2s; }
+  .projects .tab[aria-selected="false"] { background: transparent; color: #8f8f8f; border-color: #2a2a2a; }
+  .projects .tab[aria-selected="false"]:hover { color: #eee; border-color: #555; }
+  .projects .tab:focus-visible { outline: 2px solid #eee; outline-offset: 2px; }
   .projects .list { list-style: none; margin: 0; padding: 0; align-self: stretch; border-bottom: 1px solid var(--line); }
   .projects .row { display: flex; gap: 20px; padding: 24px 0; border-top: 1px solid var(--line); }
   .projects .icon-tile { flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px; background: var(--text); color: #111; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; overflow: hidden; }
@@ -108,10 +113,13 @@
   <span class="counter" id="counter">R0/0</span>
   <main id="main"></main>
 
-  <section class="projects" id="projects" aria-labelledby="projects-label">
+  <section class="projects" id="projects" aria-label="Projects and playlists">
     <div class="inner">
-      <h2 class="label" id="projects-label">Projects</h2>
-      <ul class="list">
+      <div class="tabs" role="tablist" aria-label="Sections">
+        <button class="label tab" role="tab" id="tab-projects" aria-selected="true" aria-controls="panel-projects">Projects</button>
+        <button class="label tab" role="tab" id="tab-playlists" aria-selected="false" aria-controls="panel-playlists" tabindex="-1">Playlists</button>
+      </div>
+      <ul class="list" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects">
         <li class="row"><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 48 48"><rect width="48" height="48" fill="#161616"/><rect x="8.0" y="8.90" width="1.6" height="1.20" rx=".8" fill="#ff6b9a"/><rect x="10.7" y="8.24" width="1.6" height="2.52" rx=".8" fill="#ff6b9a"/><rect x="13.4" y="7.37" width="1.6" height="4.27" rx=".8" fill="#ff6b9a"/><rect x="16.1" y="8.85" width="1.6" height="1.29" rx=".8" fill="#ff6b9a"/><rect x="18.8" y="8.59" width="1.6" height="1.82" rx=".8" fill="#ff6b9a"/><rect x="21.5" y="7.68" width="1.6" height="3.63" rx=".8" fill="#ff6b9a"/><rect x="24.2" y="8.34" width="1.6" height="2.31" rx=".8" fill="#ff6b9a"/><rect x="26.9" y="8.90" width="1.6" height="1.20" rx=".8" fill="#ff6b9a"/><rect x="29.6" y="8.33" width="1.6" height="2.34" rx=".8" fill="#ff6b9a"/><rect x="32.3" y="7.62" width="1.6" height="3.76" rx=".8" fill="#ff6b9a"/><rect x="35.0" y="8.88" width="1.6" height="1.25" rx=".8" fill="#ff6b9a"/><rect x="37.7" y="8.80" width="1.6" height="1.41" rx=".8" fill="#ff6b9a"/><rect x="8.0" y="14.84" width="1.6" height="3.82" rx=".8" fill="#ff9a3c"/><rect x="10.7" y="15.51" width="1.6" height="2.47" rx=".8" fill="#ff9a3c"/><rect x="13.4" y="16.15" width="1.6" height="1.20" rx=".8" fill="#ff9a3c"/><rect x="16.1" y="15.14" width="1.6" height="3.22" rx=".8" fill="#ff9a3c"/><rect x="18.8" y="14.95" width="1.6" height="3.60" rx=".8" fill="#ff9a3c"/><rect x="21.5" y="16.15" width="1.6" height="1.20" rx=".8" fill="#ff9a3c"/><rect x="24.2" y="15.22" width="1.6" height="3.07" rx=".8" fill="#ff9a3c"/><rect x="26.9" y="14.88" width="1.6" height="3.75" rx=".8" fill="#ff9a3c"/><rect x="29.6" y="15.46" width="1.6" height="2.58" rx=".8" fill="#ff9a3c"/><rect x="32.3" y="16.15" width="1.6" height="1.20" rx=".8" fill="#ff9a3c"/><rect x="35.0" y="14.42" width="1.6" height="4.66" rx=".8" fill="#ff9a3c"/><rect x="37.7" y="15.29" width="1.6" height="2.91" rx=".8" fill="#ff9a3c"/><rect x="8.0" y="23.40" width="1.6" height="1.20" rx=".8" fill="#4f8cff"/><rect x="10.7" y="22.56" width="1.6" height="2.87" rx=".8" fill="#4f8cff"/><rect x="13.4" y="22.42" width="1.6" height="3.16" rx=".8" fill="#4f8cff"/><rect x="16.1" y="23.40" width="1.6" height="1.20" rx=".8" fill="#4f8cff"/><rect x="18.8" y="22.92" width="1.6" height="2.16" rx=".8" fill="#4f8cff"/><rect x="21.5" y="21.89" width="1.6" height="4.22" rx=".8" fill="#4f8cff"/><rect x="24.2" y="22.73" width="1.6" height="2.55" rx=".8" fill="#4f8cff"/><rect x="26.9" y="23.40" width="1.6" height="1.20" rx=".8" fill="#4f8cff"/><rect x="29.6" y="22.09" width="1.6" height="3.82" rx=".8" fill="#4f8cff"/><rect x="32.3" y="22.68" width="1.6" height="2.63" rx=".8" fill="#4f8cff"/><rect x="35.0" y="23.40" width="1.6" height="1.20" rx=".8" fill="#4f8cff"/><rect x="37.7" y="22.88" width="1.6" height="2.24" rx=".8" fill="#4f8cff"/><rect x="8.0" y="29.19" width="1.6" height="4.12" rx=".8" fill="#5ac88a"/><rect x="10.7" y="30.65" width="1.6" height="1.20" rx=".8" fill="#5ac88a"/><rect x="13.4" y="30.21" width="1.6" height="2.08" rx=".8" fill="#5ac88a"/><rect x="16.1" y="29.14" width="1.6" height="4.22" rx=".8" fill="#5ac88a"/><rect x="18.8" y="29.95" width="1.6" height="2.60" rx=".8" fill="#5ac88a"/><rect x="21.5" y="30.65" width="1.6" height="1.20" rx=".8" fill="#5ac88a"/><rect x="24.2" y="29.17" width="1.6" height="4.15" rx=".8" fill="#5ac88a"/><rect x="26.9" y="29.18" width="1.6" height="4.13" rx=".8" fill="#5ac88a"/><rect x="29.6" y="30.65" width="1.6" height="1.20" rx=".8" fill="#5ac88a"/><rect x="32.3" y="30.01" width="1.6" height="2.49" rx=".8" fill="#5ac88a"/><rect x="35.0" y="29.21" width="1.6" height="4.09" rx=".8" fill="#5ac88a"/><rect x="37.7" y="29.65" width="1.6" height="3.19" rx=".8" fill="#5ac88a"/><rect x="8.0" y="37.37" width="1.6" height="2.26" rx=".8" fill="#b07cff"/><rect x="10.7" y="36.75" width="1.6" height="3.49" rx=".8" fill="#b07cff"/><rect x="13.4" y="36.61" width="1.6" height="3.78" rx=".8" fill="#b07cff"/><rect x="16.1" y="37.90" width="1.6" height="1.20" rx=".8" fill="#b07cff"/><rect x="18.8" y="36.91" width="1.6" height="3.18" rx=".8" fill="#b07cff"/><rect x="21.5" y="36.29" width="1.6" height="4.42" rx=".8" fill="#b07cff"/><rect x="24.2" y="37.90" width="1.6" height="1.20" rx=".8" fill="#b07cff"/><rect x="26.9" y="37.48" width="1.6" height="2.04" rx=".8" fill="#b07cff"/><rect x="29.6" y="37.04" width="1.6" height="2.92" rx=".8" fill="#b07cff"/><rect x="32.3" y="36.90" width="1.6" height="3.20" rx=".8" fill="#b07cff"/><rect x="35.0" y="37.90" width="1.6" height="1.20" rx=".8" fill="#b07cff"/><rect x="37.7" y="36.74" width="1.6" height="3.52" rx=".8" fill="#b07cff"/></svg></span><div class="row-text">
           <h3 class="row-title">SampleBuddy <span class="meta">macOS</span></h3>
           <p class="small">Drop in tracks or paste links and get them back ready to flip: renamed with BPM and key, plus 24-bit stems (vocals, drums, bass, other, instrumental) that sum back to the original. Drag them straight into FL Studio.</p>
@@ -168,6 +176,13 @@
           <p class="meta">Python · 2024</p>
           <a class="ui-link" href="https://github.com/arielbenavi/TeleScrape" target="_blank" rel="noopener">GitHub</a></div></li>
       </ul>
+      <ul class="list" id="panel-playlists" role="tabpanel" aria-labelledby="tab-playlists" hidden>
+        <li class="row"><span class="icon-tile icon-tile--photo" aria-hidden="true"><img src="https://mosaic.scdn.co/300/ab67616d00001e022447099598a2f71c7f87c722ab67616d00001e02315a535680cbbfd41ca3084bab67616d00001e02835ed5fb9b70f46c3177ffdeab67616d00001e029d3cb0eff7ba768ff7aa1f3e" alt="" width="300" height="300" loading="lazy" referrerpolicy="no-referrer"></span><div class="row-text">
+          <h3 class="row-title">WhoSampled <span class="meta">Playlist</span></h3>
+          <p class="small">The original records behind songs you know. Every track here was sampled by something famous.</p>
+          <p class="meta">28 tracks · Spotify</p>
+          <a class="ui-link" href="https://open.spotify.com/playlist/20uugwhFIGqVjpbrztDkQJ" target="_blank" rel="noopener">Listen on Spotify</a></div></li>
+      </ul>
     </div>
   </section>
 
@@ -177,8 +192,7 @@
 const SPOTIFY = "https://open.spotify.com/playlist/6oiJuW6JoN2jYlJHoO8GI1";
 const COPY = [
   "Hi! I'm [Ariel| Ben Avi. I did cybersecurity at [8200|, the Israeli intelligence unit.] Then I did SWE at [ActiveFence|, an AI content moderation startup.]]",
-  "Right now I'm at [Columbia|, studying computer science and math.]",
-  "This summer I was a quant developer at [Millennium| on the Fixed Income and Commodities team.]",
+  "Right now I'm at [Columbia|, studying computer science and math. This summer I was a quant developer at [Millennium| on the Fixed Income and Commodities team.]]",
   "On the side I build [things| like music plugins, {hindsight|https://github.com/arielbenavi/hindsight}, an app that makes your saved posts useful, and {more|https://github.com/arielbenavi}.]",
   `I also make [music|. {Hear something I produced!|${SPOTIFY}}]`,
   "I'm in [New York|, looking for new opportunities. Say hi at [email| {ab5884@columbia.edu|mailto:ab5884@columbia.edu}, or find me on {GitHub|https://github.com/arielbenavi} and {LinkedIn|https://www.linkedin.com/in/arielbenavi}.]]",
@@ -229,6 +243,24 @@ main.addEventListener("click", (e) => {
   if (open) t.dataset.highlighted = "true";
   syncCount();
 });
+
+// Projects / Playlists tabs (Projects selected by default)
+(() => {
+  const tabs = [...document.querySelectorAll('.projects [role="tab"]')];
+  const select = (t) => tabs.forEach((x) => {
+    const on = x === t;
+    x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1;
+    document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+  });
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(t));
+    t.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const n = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      select(n); n.focus();
+    });
+  });
+})();
 </script>
 </body>
 </html>
